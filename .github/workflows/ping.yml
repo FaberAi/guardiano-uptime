@@ -7,6 +7,9 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Chiama il guardiano di Lea
+      - name: Guardiano siti (su/giù)
         run: |
-          curl -fsS --max-time 60 "https://segretaria-faberais-projects.vercel.app/api/cron/guardiano?secret=${{ secrets.CRON_SECRET }}" && echo "ok" || echo "fallito"
+          curl -fsS --max-time 60 "https://segretaria-faberais-projects.vercel.app/api/cron/guardiano?secret=${{ secrets.CRON_SECRET }}" && echo "guardiano ok" || echo "guardiano fallito"
+      - name: Promemoria a scadenza
+        run: |
+          curl -fsS --max-time 60 "https://segretaria-faberais-projects.vercel.app/api/cron/promemoria?secret=${{ secrets.CRON_SECRET }}" && echo "promemoria ok" || echo "promemoria fallito"
